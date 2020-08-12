@@ -14,9 +14,8 @@ function module.RescaleModel(model, scale)
 
     local objectPositions = {model.PrimaryPart.CFrame:PointToObjectSpace(unpack(positions))}
     local scaleMatrix = CFrame.new(0, 0, 0, scale, 0, 0, 0, scale, 0, 0, 0, scale)
-    local primaryCf = model.PrimaryPart.CFrame
-    local newPoints = {scaleMatrix:PointToWorldSpace(unpack(objectPositions))}
-    newPoints = {primaryCf:PointToWorldSpace(unpack(newPoints))}
+    local primaryCf = model.PrimaryPart.CFrame * scaleMatrix
+    local newPoints = {primaryCf:PointToWorldSpace(unpack(objectPositions))}
     local newSizes = {scaleMatrix:PointToWorldSpace(unpack(sizes))}
 
     local newCframes = {}
